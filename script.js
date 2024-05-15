@@ -42,4 +42,18 @@ async function getWeather() {
         try {
             let response = await fetch(url);
             let data = await response.json();
-            displayWeather(data
+            displayWeather(data) {
+    if (data.cod === 200) {
+        weatherDiv.innerHTML = `
+            <h2>Weather in ${data.name}</h2>
+            <p>Temperature: ${data.main.temp} °C</p>
+            <p>Weather: ${data.weather[0].description}</p>
+            <p>Humidity: ${data.main.humidity}%</p>
+            <p>Wind Speed: ${data.wind.speed} m/s</p>
+        `;
+    } else {
+        weatherDiv.textContent = 'City not found';
+    }
+}
+
+populateCountries();
